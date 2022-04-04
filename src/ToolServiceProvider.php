@@ -7,9 +7,9 @@ use Illuminate\Support\ServiceProvider;
 use JeffersonSimaoGoncalves\MultitenancyNovaTool\Policies\PermissionPolicy;
 use JeffersonSimaoGoncalves\MultitenancyNovaTool\Policies\RolePolicy;
 use JeffersonSimaoGoncalves\MultitenancyNovaTool\Policies\TenantPolicy;
+use JeffersonSimaoGoncalves\NovaPermission\Nova\Permission;
+use JeffersonSimaoGoncalves\NovaPermission\Nova\Role;
 use JeffersonSimaoGoncalves\NovaPermission\NovaPermissionTool;
-use JeffersonSimaoGoncalves\NovaPermission\Permission;
-use JeffersonSimaoGoncalves\NovaPermission\Role;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
 
