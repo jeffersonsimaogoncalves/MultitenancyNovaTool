@@ -1,8 +1,8 @@
 # Multitenancy Nova Tool
 
-[![Total Downloads](https://img.shields.io/packagist/dt/romegadigital/multitenancy-nova-tool.svg?style=flat-square)](https://packagist.org/packages/romegadigital/multitenancy-nova-tool)
+[![Total Downloads](https://img.shields.io/packagist/dt/jeffersonsimaogoncalves/multitenancy-nova-tool.svg?style=flat-square)](https://packagist.org/packages/jeffersonsimaogoncalves/multitenancy-nova-tool)
 
-This package is meant to integrate with the [Multitenancy Package](https://github.com/romegadigital/Multitenancy) to bring multitenancy functionality and management to [Laravel's Nova](https://nova.laravel.com).
+This package is meant to integrate with the [Multitenancy Package](https://github.com/jeffersonsimaogoncalves/Multitenancy) to bring multitenancy functionality and management to [Laravel's Nova](https://nova.laravel.com).
 
 This package automatically includes the Multitenancy Package as a dependency. Please read the documentation on how to integrate it with your existing app.
 
@@ -23,10 +23,10 @@ This package automatically includes the Multitenancy Package as a dependency. Pl
 Install the package via Composer:
 
 ``` bash
-composer require romegadigital/multitenancy-nova-tool
+composer require jeffersonsimaogoncalves/multitenancy-nova-tool
 ```
 
-Then follow the [Installation](https://github.com/romegadigital/Multitenancy#installation) instructions to set up the Multitenancy Package.
+Then follow the [Installation](https://github.com/jeffersonsimaogoncalves/Multitenancy#installation) instructions to set up the Multitenancy Package.
 
 Next, you must register the tool with Nova. This is typically done in the `tools` method of the `NovaServiceProvider`.
 
@@ -37,12 +37,12 @@ public function tools()
 {
     return [
         // ...
-        new \RomegaDigital\MultitenancyNovaTool\MultitenancyNovaTool,
+        new \JeffersonSimaoGoncalves\MultitenancyNovaTool\MultitenancyNovaTool,
     ];
 }
 ```
 
-This package requires `Super Administrator` or `access admin` permissions. This can be added either through the included permission management tool under "Roles & Permissions" or through our [assign super-admin command](https://github.com/romegadigital/Multitenancy#console-commands).
+This package requires `Super Administrator` or `access admin` permissions. This can be added either through the included permission management tool under "Roles & Permissions" or through our [assign super-admin command](https://github.com/jeffersonsimaogoncalves/Multitenancy#console-commands).
 
 > **Hint**
 > If you already executed `multitenancy:install`, a role with the name `Super Administrator` and a permission `access admin` attached was already created. Therefore you only need to add the role to a user.
@@ -65,7 +65,7 @@ public function fields(Request $request)
 {
     return [
         // ...
-        BelongsToMany::make('Tenants', 'tenants', \RomegaDigital\MultitenancyNovaTool\Tenant::class),
+        BelongsToMany::make('Tenants', 'tenants', \JeffersonSimaoGoncalves\MultitenancyNovaTool\Tenant::class),
     ];
 }
 ```
@@ -79,7 +79,7 @@ public function fields(Request $request)
 {
     return [
         // ...
-        BelongsTo::make('Tenants', 'tenant', \RomegaDigital\MultitenancyNovaTool\Tenant::class),
+        BelongsTo::make('Tenants', 'tenant', \JeffersonSimaoGoncalves\MultitenancyNovaTool\Tenant::class),
     ];
 }
 ```
@@ -93,7 +93,7 @@ In order to display all related data to the `Tenant` model, you need to first im
 
 namespace App;
 
-use RomegaDigital\Multitenancy\Models\Tenant as TenantModel;
+use JeffersonSimaoGoncalves\Multitenancy\Models\Tenant as TenantModel;
 
 class Tenant extends TenantModel
 {
@@ -123,7 +123,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\HasMany;
-use RomegaDigital\MultitenancyNovaTool\Tenant as TenantResource;
+use JeffersonSimaoGoncalves\MultitenancyNovaTool\Tenant as TenantResource;
 
 class Tenant extends TenantResource
 {
@@ -158,7 +158,7 @@ To scope Nova results to the Tenant being utilized, add the middleware to Nova:
 
 'middleware' => [
     // ...
-    \RomegaDigital\Multitenancy\Middleware\TenantMiddleware::class,
+    \JeffersonSimaoGoncalves\Multitenancy\Middleware\TenantMiddleware::class,
 ],
 ```
 
@@ -174,8 +174,16 @@ By default, the Multitenancy resource will only be visible on the `admin` subdom
 // ...
 protected $policies = [
   // ...
-    \RomegaDigital\Multitenancy\Models\Tenant::class => \App\Policies\TenantPolicy::class,
+    \JeffersonSimaoGoncalves\Multitenancy\Models\Tenant::class => \App\Policies\TenantPolicy::class,
 ];
 ```
 
 You can override the Permission and Role model policies by setting the policy file up in you `config/multitenancy.php` file. Look for `policies.role` and `policies.permission`.
+
+## Reporting Issues
+
+If you have a problem with this plugin or any bug, please open an issue on [GitHub](https://github.com/jeffersonsimaogoncalves/MultitenancyNovaTool/issues).
+
+## Credits
+
+This work is based on the [code by RomegaDigital](https://github.com/JeffersonSimaoGoncalves/MultitenancyNovaTool).
