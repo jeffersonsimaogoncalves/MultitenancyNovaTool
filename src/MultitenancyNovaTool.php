@@ -1,6 +1,6 @@
 <?php
 
-namespace RomegaDigital\MultitenancyNovaTool;
+namespace JeffersonSimaoGoncalves\MultitenancyNovaTool;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;

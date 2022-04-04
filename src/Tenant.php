@@ -1,12 +1,13 @@
 <?php
 
-namespace RomegaDigital\MultitenancyNovaTool;
+namespace JeffersonSimaoGoncalves\MultitenancyNovaTool;
 
-use Laravel\Nova\Resource;
-use Laravel\Nova\Fields\ID;
+use App\Nova\User;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Resource;
 
 class Tenant extends Resource
 {
@@ -15,7 +16,7 @@ class Tenant extends Resource
      *
      * @var string
      */
-    public static $model = \RomegaDigital\Multitenancy\Models\Tenant::class;
+    public static $model = \JeffersonSimaoGoncalves\Multitenancy\Models\Tenant::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -38,7 +39,7 @@ class Tenant extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -52,7 +53,7 @@ class Tenant extends Resource
             Text::make('Name')->sortable()
                 ->rules('required'),
 
-            BelongsToMany::make('Users', 'users', \App\Nova\User::class)
+            BelongsToMany::make('Users', 'users', User::class)
                 ->searchable(),
         ];
     }
@@ -60,7 +61,7 @@ class Tenant extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -71,7 +72,7 @@ class Tenant extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -82,7 +83,7 @@ class Tenant extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -93,7 +94,7 @@ class Tenant extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)

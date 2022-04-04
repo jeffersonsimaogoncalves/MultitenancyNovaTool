@@ -1,16 +1,16 @@
 <?php
 
-namespace RomegaDigital\MultitenancyNovaTool\Http\Middleware;
+namespace JeffersonSimaoGoncalves\MultitenancyNovaTool\Http\Middleware;
 
-use RomegaDigital\MultitenancyNovaTool\MultitenancyNovaTool;
+use JeffersonSimaoGoncalves\MultitenancyNovaTool\MultitenancyNovaTool;
 
 class Authorize
 {
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
      * @return \Illuminate\Http\Response
      */
     public function handle($request, $next)

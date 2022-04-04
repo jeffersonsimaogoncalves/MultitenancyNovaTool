@@ -1,14 +1,17 @@
 <?php
 
-namespace RomegaDigital\MultitenancyNovaTool;
+namespace JeffersonSimaoGoncalves\MultitenancyNovaTool;
 
-use Gate;
-use Laravel\Nova\Nova;
-use Laravel\Nova\Events\ServingNova;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use RomegaDigital\MultitenancyNovaTool\Policies\RolePolicy;
-use RomegaDigital\MultitenancyNovaTool\Policies\TenantPolicy;
-use RomegaDigital\MultitenancyNovaTool\Policies\PermissionPolicy;
+use JeffersonSimaoGoncalves\MultitenancyNovaTool\Policies\PermissionPolicy;
+use JeffersonSimaoGoncalves\MultitenancyNovaTool\Policies\RolePolicy;
+use JeffersonSimaoGoncalves\MultitenancyNovaTool\Policies\TenantPolicy;
+use JeffersonSimaoGoncalves\NovaPermission\NovaPermissionTool;
+use JeffersonSimaoGoncalves\NovaPermission\Permission;
+use JeffersonSimaoGoncalves\NovaPermission\Role;
+use Laravel\Nova\Events\ServingNova;
+use Laravel\Nova\Nova;
 
 class ToolServiceProvider extends ServiceProvider
 {
@@ -21,11 +24,11 @@ class ToolServiceProvider extends ServiceProvider
 
         Nova::serving(function (ServingNova $event) {
             Nova::tools([
-                \Vyuldashev\NovaPermission\NovaPermissionTool::make()
+                NovaPermissionTool::make()
                     ->rolePolicy(config('multitenancy.policies.role', RolePolicy::class))
                     ->permissionPolicy(config('multitenancy.policies.permission', PermissionPolicy::class))
-                    ->roleResource(config('multitenancy.resources.role', \Vyuldashev\NovaPermission\Role::class))
-                    ->permissionResource(config('multitenancy.resources.permission', \Vyuldashev\NovaPermission\Permission::class)),
+                    ->roleResource(config('multitenancy.resources.role', Role::class))
+                    ->permissionResource(config('multitenancy.resources.permission', Permission::class)),
             ]);
         });
 

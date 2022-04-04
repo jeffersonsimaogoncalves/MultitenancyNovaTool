@@ -1,6 +1,6 @@
 <?php
 
-namespace RomegaDigital\MultitenancyNovaTool\Policies;
+namespace JeffersonSimaoGoncalves\MultitenancyNovaTool\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 
